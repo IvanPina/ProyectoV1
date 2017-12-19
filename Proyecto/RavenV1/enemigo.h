@@ -19,6 +19,8 @@
 #include "SFML/Window.hpp"
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <vector>
+#include "nodo.h"
 
 
 class enemigo {
@@ -31,10 +33,13 @@ public:
     void draw();
     void inicio();
     sf::CircleShape getforma();
+    void setdestino(nodo* d);
 private:
     int estado;
     float x, y;
+    float dx, dy;
     sf::CircleShape ene;
+    std::vector<nodo*> ruta;
 
 };
 

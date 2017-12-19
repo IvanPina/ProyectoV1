@@ -42,14 +42,38 @@ void enemigo::update(){
     if(estado==1){
         x++;
         if(x>40){
-            estado=2;
+            estado=2;//izquierda
         }
     }
-    else{//estado=2
+    else if(estado==2){//estado=2
      x--;
      if(x<20){
-         estado=1;
+         estado=1;//derecha
      }
+    }
+    else{//estado=3;
+        if(!ruta.empty()){
+            //std::cout << dx << std::endl;
+            if(x<dx){
+                x++;
+            }
+            if(x>dx){
+                x--;
+            }
+            if(y<dy){
+               y++;
+            }
+            if(y>dy){
+                y--;
+            }
+            if(x==dx&&y==dy){
+                std::vector<nodo*>::iterator it=ruta.begin();
+                ruta.erase(it);
+                estado=1;
+            }
+        }else{
+            //pedir nuevo nodo a clase correspondiente
+        }
     }
     
     //ene.setRadius(10.f);
@@ -65,6 +89,13 @@ void enemigo::mover(float p1, float p2){
     x=p1;
     y=p2;
     ene.setPosition(x,y);
+}
+
+void enemigo::setdestino(nodo* d){
+    estado=3;
+    ruta.push_back(d);
+    dx=ruta[0]->getx();
+    dy=ruta[0]->gety();
 }
 
 void enemigo::draw(){

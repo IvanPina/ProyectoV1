@@ -19,6 +19,7 @@
 #include <list>
 #include <vector>
 #include "enemigo.h"
+#include "nodo.h"
 using namespace std;
 
 int main()
@@ -38,6 +39,8 @@ int main()
     e2.mover(10.f,40.f);
     enemigos.push_back(&e);
     enemigos.push_back(&e2);
+    nodo prueba=nodo(70.f,70.f);
+    e.setdestino(&prueba);
     
     //enemigos[1].mover(10.f,40.f);
     //enemigos[0].mover(10.f,10.f);
